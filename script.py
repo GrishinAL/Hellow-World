@@ -110,9 +110,27 @@ def function_name(the_list):
 # Первый вариант комментариев (построчный)
 """ Второй вариант комментариев (многострочный) """
 
+# Используем функцию nester.py из папки nester
 import nester
 
 cast = ['Palin', 'Cleese', 'Idle', 'Jones', 'Gilliam', 'Chapman']
 nester.print_lol(cast)
 
 print (cast)
+
+# Генерация чисел в указанном диапазоне
+for num in range(4):
+    print (num)
+
+# Создание функции с добавлением табуляции
+def print_lol1 (the_list, level):
+    for each_item in the_list:
+        if isinstance(each_item, list):
+            print_lol1(each_item, level+1)
+        else:
+            for tab_stop in range(level):
+                print("\t", end='')
+            print(each_item)
+
+print_lol1(movies,3)
+
