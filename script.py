@@ -132,5 +132,5 @@ def print_lol1 (the_list, level):
                 print("\t", end='')
             print(each_item)
 
-print_lol1(movies,3)
+print_lol1(movies,0)
 
