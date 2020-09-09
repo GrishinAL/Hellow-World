@@ -122,7 +122,7 @@ print (cast)
 for num in range(4):
     print (num)
 
-# Создание функции с добавлением табуляции
+# Создание функции с добавлением табуляции по каждому уровню вложения
 def print_lol1 (the_list, level):
     for each_item in the_list:
         if isinstance(each_item, list):
@@ -134,3 +134,6 @@ def print_lol1 (the_list, level):
 
 print_lol1(movies,0)
 
+# Еще 1 пример
+names = ['John', 'Eric', ['Cleese', 'Idle'], 'Michael', ['Palin']]
+print_lol1(names,0)
