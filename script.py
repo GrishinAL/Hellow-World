@@ -116,40 +116,73 @@ import nester
 cast = ['Palin', 'Cleese', 'Idle', 'Jones', 'Gilliam', 'Chapman']
 nester.print_lol(cast)
 
-print (cast)
+print(cast)
 
 # Генерация чисел в указанном диапазоне
 for num in range(4):
-    print (num)
+    print(num)
+
 
 # Создание функции с добавлением табуляции по каждому уровню вложения
-def print_lol1 (the_list, level):
+def print_lol1(the_list, level):
     for each_item in the_list:
         if isinstance(each_item, list):
-            print_lol1(each_item, level+1)
+            print_lol1(each_item, level + 1)
         else:
             for tab_stop in range(level):
                 print("\t", end='')
             print(each_item)
 
-print_lol1(movies,0)
+
+print_lol1(movies, 0)
 
 # Еще 1 пример
 names = ['John', 'Eric', ['Cleese', 'Idle'], 'Michael', ['Palin']]
-print_lol1(names,0)
+print_lol1(names, 0)
+
 
 # Добавляем третий аргумент для функции, с помощью которого регулируем, нужен нам отступ или нет)
-def print_lol2 (the_list, indent=False, level=0):
+def print_lol2(the_list, indent=False, level=0):
     for each_item in the_list:
         if isinstance(each_item, list):
-            print_lol2(each_item, indent, level+1)
+            print_lol2(each_item, indent, level + 1)
         else:
             if indent:
                 for tab_stop in range(level):
                     print("\t", end='')
             print(each_item)
 
-print_lol2 (names)  # без табуляции
-print_lol2 (names, True)  # с табуляцией
-print_lol2 (names, True, 4)  # c табуляцией + отступ
 
+print_lol2(names)  # без табуляции
+print_lol2(names, True)  # с табуляцией
+print_lol2(names, True, 4)  # c табуляцией + отступ
+
+"""
+import os
+os.getcwd()
+os.chdir('nester/HeadFirstPython/chapter3')
+os.getcwd() 
+"""
+
+
+
+
+# В папку nester есть папка HeadFirstPython, в ней папка chapter3, в ней файл с данными sketch.txt
+# Выводим на печать данные из файла
+data = open('nester/HeadFirstPython/chapter3/sketch.txt')
+print(data.readline(), end='')  # Первая строка
+print(data.readline(), end='')  # Вторая строка и тд
+
+data.seek(0)  # возврат к началу файла
+
+for each_line in data:
+    print (each_line, end='')  # Вывод на печать всего файла
+data.seek(0)
+
+for each_line in data:  # Разделение текста знаком ":"  на "до" - role и "после" - text и вывод на печать с добавлением " said " по центру
+    (role, text) = each_line.split(':')
+    print (role, end='')
+    print(' said: ', end='')
+    print (text, end='')
+
+data.close()  # Закрываем файл после завершения заботы с ним.
