@@ -205,7 +205,7 @@ data.close()  # Закрываем файл после завершения за
 
 
 
-print ('', end='\n')  # Перенос на новую строку
+print('', end='\n') # Перенос на новую строку
 
 # Проверка на наличие ":"
 a = 'I tell you, theres no such thing as a flying circus.'
@@ -243,9 +243,7 @@ try:
 except:
     print ('The data file is missing!')
 
-print ('', end='\n')  # Перенос на новую строку
-print ('last issue:')
-print ('', end='\n')
+
 
 # Итого: Самый удачный вариант из всех:
 """
@@ -257,12 +255,40 @@ try: # первая проверка: если что-то пойдет не т�
     data = open('nester/HeadFirstPython/chapter3/sketch.txt')
     for each_line in data:
         try: # вторая проверка: если что-то пойдет не так с обработкой текста, получим сообщение '!!! Something goes wrong !!!!'
-            (role, line_spoken) = each_line.split(':', 1)
+            (role, text) = each_line.split(':', 1)
             print(role, end='')
             print(' said: ', end='')
-            print(line_spoken, end='')
+            print(text, end='')
         except ValueError: # исключения - ошибки со значениями
             print('!!! Something goes wrong !!!!')
     data.close()
 except IOError: # исключения - ошибки с  открытием файла
     print('The data file is missing!')
+
+
+print ('', end='\n')  # Перенос на новую строку
+print ('last issue:')
+print ('', end='\n')
+
+
+
+# Разделяем диалог на 2 списка
+man = []
+other = []
+try:
+    data=open('nester/HeadFirstPython/chapter3/sketch.txt')
+    for each_line in data:
+        try:
+            (role, text) = each_line.split(':', 1)
+            text = text.strip() # Удаляем лишние пробеоы
+            if role == 'Man':
+                man.append(text) # Добавляем элемент в конец списка
+            elif role == 'Other Man':
+                other.append(text) # Добавляем элемент в конец списка
+        except ValueError:
+            pass
+    data.close()
+except IOError:
+    print('The datafile is missing')
+print(man)
+print(other)
