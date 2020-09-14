@@ -261,8 +261,8 @@ try: # первая проверка: если что-то пойдет не т�
             print(role, end='')
             print(' said: ', end='')
             print(line_spoken, end='')
-        except:
+        except ValueError: # исключения - ошибки со значениями
             print('!!! Something goes wrong !!!!')
     data.close()
-except:
+except IOError: # исключения - ошибки с  открытием файла
     print('The data file is missing!')
