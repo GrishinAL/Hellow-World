@@ -164,9 +164,6 @@ os.chdir('nester/HeadFirstPython/chapter3')
 os.getcwd() 
 """
 
-
-
-
 # В папку nester есть папка HeadFirstPython, в ней папка chapter3, в ней файл с данными sketch.txt
 # Выводим на печать данные из файла
 data = open('nester/HeadFirstPython/chapter3/sketch.txt')
@@ -175,16 +172,62 @@ print(data.readline(), end='')  # Вторая строка и тд
 
 data.seek(0)  # возврат к началу файла
 
-for each_line in data:
+"""for each_line in data:
     print (each_line, end='')  # Вывод на печать всего файла
-data.seek(0)
+data.seek(0)"""
 
+# обработка ошибок через if (проверка на наличие двоеточия)
+data = open('nester/HeadFirstPython/chapter3/sketch.txt')
 for each_line in data:  # Разделение текста знаком ":"  на "до" - role и "после" - text и вывод на печать с добавлением " said " по центру
-    (role, text) = each_line.split(':')
-    print (role, end='')
-    print(' said: ', end='')
-    print (text, end='')
-
+    if not each_line.find(':') == -1:  # Добавляем проверку на наличие двоетоия в строке
+        (role, text) = each_line.split(':', 1)  # разделение 1 против всех. нужно для случаев, когда в строке несколько ":"
+        print(role, end='')
+        print(' said: ', end='')
+        print(text, end='')
+    else:
+        print (each_line, end='')
 data.close()  # Закрываем файл после завершения заботы с ним.
 
-# Закончил на ст.79
+print ('', end='\n')  # Перенос на новую строку
+
+# Пробуем выполнить код. Если появляется ошибка - пропускаем (либо показываем сообщение, что тут ошибка).
+data = open('nester/HeadFirstPython/chapter3/sketch.txt')
+for each_line in data:  # Разделение текста знаком ":"  на "до" - role и "после" - text и вывод на печать с добавлением " said " по центру
+    try:
+        (role, text) = each_line.split(':', 1)  # разделение 1 против всех. нужно для случаев, когда в строке несколько ":"
+        print(role, end='')
+        print(' said: ', end='')
+        print(text, end='')
+    except:
+        print ('!!!!!!!!!!!!!!!SOME MISTAKES HERE!!!!!!!!!!!!!!!!', end='') # Показываем сообщение об ошибке вместо строки
+        pass
+data.close()  # Закрываем файл после завершения заботы с ним.
+
+
+
+print ('', end='\n')  # Перенос на новую строку
+
+# Проверка на наличие ":"
+a = 'I tell you, theres no such thing as a flying circus.'
+print(a.find(':'))
+# Ответ: -1 (т.е. не содержит)
+b = 'I tell you: theres no such thing as a flying circus.'
+print(b.find(':'))
+# Ответ: 10 (т.е. содержит)
+
+print ('', end='\n')  # Перенос на новую строку
+print ('pipic9')
+print ('', end='\n')
+
+import os
+if os.path.exists('nester/HeadFirstPython/chapter3/sketch.txt'):
+    data = open ('nester/HeadFirstPython/chapter3/sketch.txt')
+    for each_line in data:
+        if not each_line.find(':') == -1:
+            (role, text) = each_line.split(':', 1)
+            print (role, end='')
+            print(' said: ', end='')
+            print (text, end='')
+    data.close()
+else:
+    print ('The data file is missing!')
