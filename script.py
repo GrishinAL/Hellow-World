@@ -215,10 +215,8 @@ b = 'I tell you: theres no such thing as a flying circus.'
 print(b.find(':'))
 # Ответ: 10 (т.е. содержит)
 
-print ('', end='\n')  # Перенос на новую строку
-print ('pipic9')
-print ('', end='\n')
 
+# Проверка на наличие файла
 import os
 if os.path.exists('nester/HeadFirstPython/chapter3/sketch.txt'):
     data = open ('nester/HeadFirstPython/chapter3/sketch.txt')
@@ -231,3 +229,20 @@ if os.path.exists('nester/HeadFirstPython/chapter3/sketch.txt'):
     data.close()
 else:
     print ('The data file is missing!')
+
+# Проверка на выполнение скрипта (аналогично предыдущему варианту)
+try:
+    data = open ('nester/HeadFirstPython/chapter3/sketch.txt')
+    for each_line in data:
+        if not each_line.find(':') == -1:
+            (role, text) = each_line.split(':', 1)
+            print (role, end='')
+            print(' said: ', end='')
+            print (text, end='')
+    data.close()
+except:
+    print ('The data file is missing!')
+
+print ('', end='\n')  # Перенос на новую строку
+print ('last issue:')
+print ('', end='\n')
