@@ -246,3 +246,23 @@ except:
 print ('', end='\n')  # Перенос на новую строку
 print ('last issue:')
 print ('', end='\n')
+
+# Итого: Самый удачный вариант из всех:
+"""
+Вместо первоочередной обработки всех возможный вариантов мы сперва пишем сам код, 
+и только потом будем обрабатывать ошибки. Если что-то пойдет не так, то мы получим сообщение об ошибке и будем знать,
+что необходимо исправить в коде. 
+"""
+try: # первая проверка: если что-то пойдет не так с открытием файла, получим сообщение 'The data file is missing!'
+    data = open('nester/HeadFirstPython/chapter3/sketch.txt')
+    for each_line in data:
+        try: # вторая проверка: если что-то пойдет не так с обработкой текста, получим сообщение '!!! Something goes wrong !!!!'
+            (role, line_spoken) = each_line.split(':', 1)
+            print(role, end='')
+            print(' said: ', end='')
+            print(line_spoken, end='')
+        except:
+            print('!!! Something goes wrong !!!!')
+    data.close()
+except:
+    print('The data file is missing!')
