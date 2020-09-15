@@ -266,10 +266,6 @@ except IOError: # исключения - ошибки с  открытием ф�
     print('The data file is missing!')
 
 
-print ('', end='\n')  # Перенос на новую строку
-print ('last issue:')
-print ('', end='\n')
-
 
 
 # Разделяем диалог на 2 списка
@@ -292,3 +288,8 @@ except IOError:
     print('The datafile is missing')
 print(man)
 print(other)
+
+print ('', end='\n')  # Перенос на новую строку
+print ('last issue:')
+print ('', end='\n')
+
