@@ -2,7 +2,7 @@
 def printArray(array):
     for j in range(len(array)):  # range(stop)/range(start, stop)/range(start, stop, step)
         for i in range(len(array[j])):
-            print("{:4d}".format(array[j][i]), end='')  # ("{:2d}".format()) - Выравнивание по правому краю, ширина 4, пустое место заполняется пробельнами символами
+            print("{:4d}".format(array[j][i]), end='')  # ("{:4d}".format()) - Выравнивание по правому краю, ширина 4, пустое место заполняется пробельнами символами
         print()  # переход на новую строку
 
 # Заполнение матрицы через numpy
@@ -102,10 +102,8 @@ for i in range(n):
     array[i] = [0] * n
 for i in range(0, n):
     for j in range(0, n):
-        if i % 2 == 0:
-            array[j][i] = i*n+j+1
-        else:
-            array [j][i] = i*n+n-j
+        # ????????
 print('4. Заполнение спиралью: ', end='\n')
 printArray(array)
 # __________________________________________________________________
+
