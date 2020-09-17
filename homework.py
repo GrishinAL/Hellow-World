@@ -123,3 +123,84 @@ for i in range(n//2):  # i = 0,1,2
 print('4. Заполнение спиралью: ', end='\n')
 printArray(array)
 # __________________________________________________________________
+
+# 5) Заполнение массив длины N рандомными числами и найти максимум _________________________________
+import numpy as np
+array = np.random.randint(0, 999, 10)  # от, до, размер массива
+print('Массив рандомных чисел: ', array)
+max = 0
+for i in range(len(array)):
+    if array[i] > max:
+        max = array[i]
+    else:
+        i = i+1
+print ('Max = ', max)
+
+# 6) Заполнение массив длины N рандомными числами и найти минимум _________________________________
+
+import numpy as np
+array = np.random.randint(0, 999, 10)  # от, до, размер массива
+print('Массив рандомных чисел: ', array)
+
+min = array [0]
+for i in range(len(array)):
+    if array[i] < min:
+        min = array[i]
+    else:
+        i = i+1
+print ('Min = ', min)
+
+# 6) Найти индекс 1 числа вложенного массива _________________________________
+print('', end='\n')
+
+import numpy as np
+import random as rd
+import array
+L1 = 10  # Длина 1 массива
+L2 = rd.randint(1, L1-1) # Длина 2 массива
+a = np.random.randint(0, 2, L1)  # Задаем массив с рандомными значениями (от, до, размер массива)
+b = np.random.randint(0, 2, L2)  # Задаем массив с рандомными значениями (от, до, размер массива)
+c = []
+L3 = (L1 - L2) + 1  # Разница длин массивов a и b
+print('Array 1 = ', a)
+print('Array 2 = ', b)
+print('L3 = ', L3)
+# тест
+for i in range(0, L3):
+    if a[i] == b[0]:
+        print('TRUE1')
+        for j in range(1, L2):
+            if a[i+1] == b[j]:
+                print('true',i+1)
+                i=i+1
+            else:
+                print('false',i)
+                break
+    else:
+        print('false0000')
+
+
+
+
+
+
+
+
+"""
+range(стоп) от 0 до стоп (не включая стоп)
+range(старт, стоп) от старт (включительно) до стоп (не включая стоп)
+range(старт, стоп, шаг) [старт стоп) шаг
+"""
+
+"""
+# вариант 1
+for i in range(len(array_1)):
+    if (array_2[0] == array_1[i] and array_2[1] == array_1[i+1]):
+        print('Result: i = ', i)
+        break
+    elif i == len(array_1)-1:
+        print('Result: -1')
+        
+        
+"""
+# __________________________________________________________________
