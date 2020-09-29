@@ -171,10 +171,10 @@ for i in range(0, L3):
         print('TRUE1')
         for j in range(1, L2):
             if a[i+1] == b[j]:
-                print('true',i+1)
-                i=i+1
+                print('true', i+1)
+                i = i+1
             else:
-                print('false',i)
+                print('false', i)
                 break
     else:
         print('false0000')
