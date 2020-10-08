@@ -314,7 +314,7 @@ except IOError:
     print('The datafile is missing')
 
 try:
-    man_file = open('nester/HeadFirstPython/chapter3/man_data.txt', 'w+')  # 'w' - данные очищаются и вносятся новые
+    man_file = open('nester/HeadFirstPython/chapter3/man_data.txt', 'w+')  # 'w' - данные очищаются и вносятся новые // еще есть w+ но разницу не понял
     other_file = open('nester/HeadFirstPython/chapter3/other_data.txt', 'w+')  # 'a' - данные не очищаются, добавляется новая строка после каждого выполнения скрипта
     # Если файла нет, то он создается.
     print(man, file=man_file)  # Вместо печати ижет сохранение в файл
@@ -328,10 +328,25 @@ finally:  # Обеспечение правильного закрытия фа�
     man_file.close()
     other_file.close()
 
+"""
+"r"   Opens a file for reading only.
+"r+"  Opens a file for both reading and writing.
+"rb"  Opens a file for reading only in binary format.
+"rb+" Opens a file for both reading and writing in binary format.
+"w"   Opens a file for writing only.
+"a"   Open for writing.  The file is created if it does not exist.
+"a+"  Open for reading and writing.  The file is created if it does not exist.
+"""
+
+# Учимся находить конкретную проблему в процессе записи файла
 try:
-    data = open('nester/HeadFirstPython/chapter3/missing.txt')
-    print(data.readline(),end='')
-except IOError:
-    print ('File error')
+    data = open('nester/HeadFirstPython/chapter3/missing.txt', 'r')
+    print(data.readline(), end='')
+except IOError as err:  # '... + str(err)' показывает конкретное место ошибки
+    print ('File error: ' + str(err))   # '... + str(err)' показывает конкретное место ошибки
 finally:
-    data.close()
+    if 'data' in locals():
+        data.close()
+        print('zbs')
+    else:
+        print('ne zbs')
