@@ -180,32 +180,33 @@ data.seek(0)"""
 data = open('nester/HeadFirstPython/chapter3/sketch.txt')
 for each_line in data:  # Разделение текста знаком ":"  на "до" - role и "после" - text и вывод на печать с добавлением " said " по центру
     if not each_line.find(':') == -1:  # Добавляем проверку на наличие двоетоия в строке
-        (role, text) = each_line.split(':', 1)  # разделение 1 против всех. нужно для случаев, когда в строке несколько ":"
+        (role, text) = each_line.split(':',
+                                       1)  # разделение 1 против всех. нужно для случаев, когда в строке несколько ":"
         print(role, end='')
         print(' said: ', end='')
         print(text, end='')
     else:
-        print (each_line, end='')
+        print(each_line, end='')
 data.close()  # Закрываем файл после завершения заботы с ним.
 
-print ('', end='\n')  # Перенос на новую строку
+print('', end='\n')  # Перенос на новую строку
 
 # Пробуем выполнить код. Если появляется ошибка - пропускаем (либо показываем сообщение, что тут ошибка).
 data = open('nester/HeadFirstPython/chapter3/sketch.txt')
 for each_line in data:  # Разделение текста знаком ":"  на "до" - role и "после" - text и вывод на печать с добавлением " said " по центру
     try:
-        (role, text) = each_line.split(':', 1)  # разделение 1 против всех. нужно для случаев, когда в строке несколько ":"
+        (role, text) = each_line.split(':',
+                                       1)  # разделение 1 против всех. нужно для случаев, когда в строке несколько ":"
         print(role, end='')
         print(' said: ', end='')
         print(text, end='')
     except:
-        print ('!!!!!!!!!!!!!!!SOME MISTAKES HERE!!!!!!!!!!!!!!!!', end='') # Показываем сообщение об ошибке вместо строки
+        print('!!!!!!!!!!!!!!!SOME MISTAKES HERE!!!!!!!!!!!!!!!!',
+              end='')  # Показываем сообщение об ошибке вместо строки
         pass
 data.close()  # Закрываем файл после завершения заботы с ним.
 
-
-
-print('', end='\n') # Перенос на новую строку
+print('', end='\n')  # Перенос на новую строку
 
 # Проверка на наличие ":"
 a = 'I tell you, theres no such thing as a flying circus.'
@@ -218,32 +219,31 @@ print(b.find(':'))
 
 # Проверка на наличие файла
 import os
+
 if os.path.exists('nester/HeadFirstPython/chapter3/sketch.txt'):
-    data = open ('nester/HeadFirstPython/chapter3/sketch.txt')
+    data = open('nester/HeadFirstPython/chapter3/sketch.txt')
     for each_line in data:
         if not each_line.find(':') == -1:
             (role, text) = each_line.split(':', 1)
-            print (role, end='')
+            print(role, end='')
             print(' said: ', end='')
-            print (text, end='')
+            print(text, end='')
     data.close()
 else:
-    print ('The data file is missing!')
+    print('The data file is missing!')
 
 # Проверка на выполнение скрипта (аналогично предыдущему варианту)
 try:
-    data = open ('nester/HeadFirstPython/chapter3/sketch.txt')
+    data = open('nester/HeadFirstPython/chapter3/sketch.txt')
     for each_line in data:
         if not each_line.find(':') == -1:
             (role, text) = each_line.split(':', 1)
-            print (role, end='')
+            print(role, end='')
             print(' said: ', end='')
-            print (text, end='')
+            print(text, end='')
     data.close()
 except:
-    print ('The data file is missing!')
-
-
+    print('The data file is missing!')
 
 # Итого: Самый удачный вариант из всех:
 """
@@ -251,36 +251,33 @@ except:
 и только потом будем обрабатывать ошибки. Если что-то пойдет не так, то мы получим сообщение об ошибке и будем знать,
 что необходимо исправить в коде. 
 """
-try: # первая проверка: если что-то пойдет не так с открытием файла, получим сообщение 'The data file is missing!'
+try:  # первая проверка: если что-то пойдет не так с открытием файла, получим сообщение 'The data file is missing!'
     data = open('nester/HeadFirstPython/chapter3/sketch.txt')
     for each_line in data:
-        try: # вторая проверка: если что-то пойдет не так с обработкой текста, получим сообщение '!!! Something goes wrong !!!!'
+        try:  # вторая проверка: если что-то пойдет не так с обработкой текста, получим сообщение '!!! Something goes wrong !!!!'
             (role, text) = each_line.split(':', 1)
             print(role, end='')
             print(' said: ', end='')
             print(text, end='')
-        except ValueError: # исключения - ошибки со значениями
+        except ValueError:  # исключения - ошибки со значениями
             print('!!! Something goes wrong !!!!')
     data.close()
-except IOError: # исключения - ошибки с  открытием файла
+except IOError:  # исключения - ошибки с  открытием файла
     print('The data file is missing!')
-
-
-
 
 # Разделяем диалог на 2 списка
 man = []
 other = []
 try:
-    data=open('nester/HeadFirstPython/chapter3/sketch.txt')
+    data = open('nester/HeadFirstPython/chapter3/sketch.txt')
     for each_line in data:
         try:
             (role, text) = each_line.split(':', 1)
-            text = text.strip() # Удаляем лишние пробеоы
+            text = text.strip()  # Удаляем лишние пробелы
             if role == 'Man':
-                man.append(text) # Добавляем элемент в конец списка
+                man.append(text)  # Добавляем элемент в конец списка
             elif role == 'Other Man':
-                other.append(text) # Добавляем элемент в конец списка
+                other.append(text)  # Добавляем элемент в конец списка
         except ValueError:
             pass
     data.close()
@@ -289,10 +286,42 @@ except IOError:
 print(man)
 print(other)
 
-print ('', end='\n')  # Перенос на новую строку
-print ('last issue:')
-print ('', end='\n')
+print('', end='\n')  # Перенос на новую строку
+print('last issue:')
+print('', end='\n')
 
 # range(стоп) от 0 до стоп (не включая стоп)
 # range(старт, стоп) от старт (включительно) до стоп (не включая стоп)
 # range(старт, стоп, шаг) [старт стоп) шаг
+
+# Сохранение в файл:
+man = []
+other = []
+try:
+    data = open('nester/HeadFirstPython/chapter3/sketch.txt')
+    for each_line in data:
+        try:
+            (role, text) = each_line.split(':', 1)
+            text = text.strip()  # Удаляем лишние пробелы
+            if role == 'Man':
+                man.append(text)  # Добавляем элемент в конец списка
+            elif role == 'Other Man':
+                other.append(text)  # Добавляем элемент в конец списка
+        except ValueError:
+            pass
+    data.close()
+except IOError:
+    print('The datafile is missing')
+
+try:
+    man_file = open('nester/HeadFirstPython/chapter3/man_data.txt', 'w+')  # 'w' - данные очищаются и вносятся новые
+    other_file = open('nester/HeadFirstPython/chapter3/other_data.txt', 'w+')  # 'a' - данные не очищаются, добавляется новая строка после каждого выполнения скрипта
+    # Если файла нет, то он создается.
+    print(man, file=man_file)  # Вместо печати ижет сохранение в файл
+    print(other, file=other_file)
+
+    man_file.close()  # закрытие файла после использования
+    other_file.close()
+except IOError:
+    print('File error.')
+
