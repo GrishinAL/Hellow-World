@@ -324,4 +324,6 @@ try:
     other_file.close()
 except IOError:
     print('File error.')
-
+finally:  # Обеспечение правильного закрытия файлов (даже при возникновении ошибок записи)
+    man_file.close()
+    other_file.close()
