@@ -345,8 +345,59 @@ try:
 except IOError as err:  # '... + str(err)' показывает конкретное место ошибки
     print ('File error: ' + str(err))   # '... + str(err)' показывает конкретное место ошибки
 finally:
-    if 'data' in locals():
+    if 'data' in locals():  # Проверка на существование имени "data" в текущей области.
+        # Оператор "in" проверяет вхождение в что-либо
+        # Функция locals () BIF возвращает набор имен, определенных в текущей области.
         data.close()
         print('zbs')
     else:
         print('ne zbs')
+
+# Заменяем схему try/except/finally на try with/except (часть 1)
+    # Стандартный паттерн:
+    try:
+        data = open('nester/HeadFirstPython/chapter3/its.txt', "w")
+        print("It's...", file=data)
+    except IOError as err:
+        print('File error: ' + str(err))
+    finally:
+        if 'data' in locals():
+            data.close()
+
+    # Упрощенный вариант:
+    try:
+        with open('nester/HeadFirstPython/chapter3/its.txt', "w") as data:
+            print("It's...", file=data)
+    except IOError as err:
+        print('File error: ' + str(err))
+
+# Заменяем схему try/except/finally на try with/except (часть 2)
+    # До:
+    try:
+        man_file = open('nester/HeadFirstPython/chapter3/man_data.txt', 'w')
+        other_file = open('nester/HeadFirstPython/chapter3/other_data.txt', 'w')
+
+        print(man, file=man_file)
+        print(other, file=other_file)
+    except IOError as err:
+        print('File error: ' + str(err))
+    finally:
+        if 'man_file' in locals(): man_file.close()
+        if 'other_file' in locals(): other_file.close()
+
+    # После:
+    try:
+        with open('nester/HeadFirstPython/chapter3/man_data.txt', 'w') as man_file:
+            print(man, file=man_file)
+        with open('nester/HeadFirstPython/chapter3/other_data.txt', 'w') as other_file:
+            print(man, file=other_file)
+    except IOError as err:
+        print('File error: ' + str(err))
+
+    # Еще после:
+    try:
+        with open('nester/HeadFirstPython/chapter3/man_data.txt', 'w') as man_file, open('nester/HeadFirstPython/chapter3/other_data.txt', 'w') as other_file:
+            print(man, file=man_file)
+            print(man, file=other_file)
+    except IOError as err:
+        print('File error: ' + str(err))
