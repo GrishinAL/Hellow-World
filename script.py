@@ -327,3 +327,11 @@ except IOError:
 finally:  # Обеспечение правильного закрытия файлов (даже при возникновении ошибок записи)
     man_file.close()
     other_file.close()
+
+try:
+    data = open('nester/HeadFirstPython/chapter3/missing.txt')
+    print(data.readline(),end='')
+except IOError:
+    print ('File error')
+finally:
+    data.close()
