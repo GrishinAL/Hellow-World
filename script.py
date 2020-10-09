@@ -1,5 +1,7 @@
-import nester
 import sys
+
+import nester
+
 # from nester.nester import print_lol3
 
 if 43 > 42:
@@ -317,11 +319,11 @@ try:
 except IOError:
     print('The datafile is missing')
 
-
-
 try:
-    man_file = open('nester/HeadFirstPython/chapter3/man_data.txt', 'w+')  # 'w' - данные очищаются и вносятся новые // еще есть w+ но разницу не понял
-    other_file = open('nester/HeadFirstPython/chapter3/other_data.txt', 'w+')  # 'a' - данные не очищаются, добавляется новая строка после каждого выполнения скрипта
+    man_file = open('nester/HeadFirstPython/chapter3/man_data.txt',
+                    'w+')  # 'w' - данные очищаются и вносятся новые // еще есть w+ но разницу не понял
+    other_file = open('nester/HeadFirstPython/chapter3/other_data.txt',
+                      'w+')  # 'a' - данные не очищаются, добавляется новая строка после каждого выполнения скрипта
     # Если файла нет, то он создается.
     print(man, file=man_file)  # Вместо печати ижет сохранение в файл
     print(other, file=other_file)
@@ -349,7 +351,7 @@ try:
     data = open('nester/HeadFirstPython/chapter3/missing.txt', 'r')
     print(data.readline(), end='')
 except IOError as err:  # '... + str(err)' показывает конкретное место ошибки
-    print ('File error: ' + str(err))   # '... + str(err)' показывает конкретное место ошибки
+    print('File error: ' + str(err))  # '... + str(err)' показывает конкретное место ошибки
 finally:
     if 'data' in locals():  # Проверка на существование имени "data" в текущей области.
         # Оператор "in" проверяет вхождение в что-либо
@@ -359,7 +361,7 @@ finally:
     else:
         print('ne zbs')
 
-# Заменяем схему try/except/finally на try with/except (часть 1)
+    # Заменяем схему try/except/finally на try with/except (часть 1)
     # Стандартный паттерн:
     try:
         data = open('nester/HeadFirstPython/chapter3/its.txt', "w")
@@ -377,7 +379,7 @@ finally:
     except IOError as err:
         print('File error: ' + str(err))
 
-# Заменяем схему try/except/finally на try with/except (часть 2)
+    # Заменяем схему try/except/finally на try with/except (часть 2)
     # До:
     try:
         man_file = open('nester/HeadFirstPython/chapter3/man_data.txt', 'w')
@@ -404,14 +406,15 @@ finally:
 
     # Еще после:
     try:
-        with open('nester/HeadFirstPython/chapter3/man_data.txt', 'w') as man_file, open('nester/HeadFirstPython/chapter3/other_data.txt', 'w') as other_file:
+        with open('nester/HeadFirstPython/chapter3/man_data.txt', 'w') as man_file, open(
+                'nester/HeadFirstPython/chapter3/other_data.txt', 'w') as other_file:
             print(man, file=man_file)
             print(other, file=other_file)
     except IOError as err:
         print('File error: ' + str(err))
 
-
 # Учимся менять формат данных, в котором они харнятся
+"""
 def print_lol(the_list, indent=False, level=0, fh=sys.stdout):  # Четвертый аргумент к вашей функции print_lol (), чтобы определить место для записи ваших данных, не забудьте указать своему аргументу значение по умолчанию sys.stdout, чтобы он продолжал писать на экран, если объект файла не указывается при вызове функции.
     for each_item in the_list:
         if isinstance(each_item, list):
@@ -421,11 +424,17 @@ def print_lol(the_list, indent=False, level=0, fh=sys.stdout):  # Четверт
                 for tab_stop in range(level):
                     print("\t", end='', file=fh)
             print(each_item, file=fh)
+"""
+import sys
+import nester
 
-
+fh = sys.stdout
 try:
-    with open('nester/HeadFirstPython/chapter3/man_data.txt', 'w') as man_file, open('nester/HeadFirstPython/chapter3/other_data.txt', 'w') as other_file:
-        print_lol(man, fh=man_file)
-        print_lol(other, fh=other_file)
+    with open('nester/HeadFirstPython/chapter3/man_data.txt', 'w') as man_file, open(
+            'nester/HeadFirstPython/chapter3/other_data.txt', 'w') as other_file:
+        nester.print_lol4(man, fh=man_file)
+        nester.print_lol4(other, fh=other_file)
 except IOError as err:
     print('File error: ' + str(err))
+
+# Внутри script.py работает, а c импортом из nester - нет... ХУЙ ЗНАЕТ ПОЧЕМУ
