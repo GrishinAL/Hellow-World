@@ -1,3 +1,7 @@
+import nester
+import sys
+# from nester.nester import print_lol3
+
 if 43 > 42:
     print('yes bitch... 43 is fucking bigger then 42')
 
@@ -111,7 +115,7 @@ def function_name(the_list):
 """ Второй вариант комментариев (многострочный) """
 
 # Используем функцию nester.py из папки nester
-import nester
+
 
 cast = ['Palin', 'Cleese', 'Idle', 'Jones', 'Gilliam', 'Chapman']
 nester.print_lol(cast)
@@ -394,7 +398,7 @@ finally:
         with open('nester/HeadFirstPython/chapter3/man_data.txt', 'w') as man_file:
             print(man, file=man_file)
         with open('nester/HeadFirstPython/chapter3/other_data.txt', 'w') as other_file:
-            print(man, file=other_file)
+            print(other, file=other_file)
     except IOError as err:
         print('File error: ' + str(err))
 
@@ -408,12 +412,20 @@ finally:
 
 
 # Учимся менять формат данных, в котором они харнятся
-with open('nester/HeadFirstPython/chapter3/man_data.txt') as mdf:
-    print(mdf.readline())
+def print_lol(the_list, indent=False, level=0, fh=sys.stdout):  # Четвертый аргумент к вашей функции print_lol (), чтобы определить место для записи ваших данных, не забудьте указать своему аргументу значение по умолчанию sys.stdout, чтобы он продолжал писать на экран, если объект файла не указывается при вызове функции.
+    for each_item in the_list:
+        if isinstance(each_item, list):
+            print_lol(each_item, indent, level+1, fh)
+        else:
+            if indent:
+                for tab_stop in range(level):
+                    print("\t", end='', file=fh)
+            print(each_item, file=fh)
+
 
 try:
-    with open('nester/HeadFirstPython/chapter3/man_data.txt') as man_file, open('nester/HeadFirstPython/chapter3/other_data.txt') as other_file:
-        print_lol2(man_file)
-        print_lol2(other_file)
+    with open('nester/HeadFirstPython/chapter3/man_data.txt', 'w') as man_file, open('nester/HeadFirstPython/chapter3/other_data.txt', 'w') as other_file:
+        print_lol(man, fh=man_file)
+        print_lol(other, fh=other_file)
 except IOError as err:
     print('File error: ' + str(err))
