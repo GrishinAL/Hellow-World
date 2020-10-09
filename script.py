@@ -313,6 +313,8 @@ try:
 except IOError:
     print('The datafile is missing')
 
+
+
 try:
     man_file = open('nester/HeadFirstPython/chapter3/man_data.txt', 'w+')  # 'w' - данные очищаются и вносятся новые // еще есть w+ но разницу не понял
     other_file = open('nester/HeadFirstPython/chapter3/other_data.txt', 'w+')  # 'a' - данные не очищаются, добавляется новая строка после каждого выполнения скрипта
@@ -382,8 +384,10 @@ finally:
     except IOError as err:
         print('File error: ' + str(err))
     finally:
-        if 'man_file' in locals(): man_file.close()
-        if 'other_file' in locals(): other_file.close()
+        if 'man_file' in locals():
+            man_file.close()
+        if 'other_file' in locals():
+            other_file.close()
 
     # После:
     try:
@@ -398,6 +402,18 @@ finally:
     try:
         with open('nester/HeadFirstPython/chapter3/man_data.txt', 'w') as man_file, open('nester/HeadFirstPython/chapter3/other_data.txt', 'w') as other_file:
             print(man, file=man_file)
-            print(man, file=other_file)
+            print(other, file=other_file)
     except IOError as err:
         print('File error: ' + str(err))
+
+
+# Учимся менять формат данных, в котором они харнятся
+with open('nester/HeadFirstPython/chapter3/man_data.txt') as mdf:
+    print(mdf.readline())
+
+try:
+    with open('nester/HeadFirstPython/chapter3/man_data.txt') as man_file, open('nester/HeadFirstPython/chapter3/other_data.txt') as other_file:
+        print_lol2(man_file)
+        print_lol2(other_file)
+except IOError as err:
+    print('File error: ' + str(err))
