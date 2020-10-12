@@ -1,9 +1,3 @@
-import sys
-
-import nester
-
-# from nester.nester import print_lol3
-
 if 43 > 42:
     print('yes bitch... 43 is fucking bigger then 42')
 
@@ -116,11 +110,11 @@ def function_name(the_list):
 # Первый вариант комментариев (построчный)
 """ Второй вариант комментариев (многострочный) """
 
-# Используем функцию nester.py из папки nester
+# Используем функцию nester_wtf.py из папки nester
 
 
 cast = ['Palin', 'Cleese', 'Idle', 'Jones', 'Gilliam', 'Chapman']
-nester.print_lol(cast)
+# print_lol(cast)
 
 print(cast)
 
@@ -426,15 +420,23 @@ def print_lol(the_list, indent=False, level=0, fh=sys.stdout):  # Четверт
             print(each_item, file=fh)
 """
 import sys
-import nester
+from nester import nester
+# import nester
+# from new_nester import my_nester
 
-fh = sys.stdout
+
+print('before')
+# from .nester import nester
+
 try:
     with open('nester/HeadFirstPython/chapter3/man_data.txt', 'w') as man_file, open(
             'nester/HeadFirstPython/chapter3/other_data.txt', 'w') as other_file:
-        nester.print_lol4(man, fh=man_file)
-        nester.print_lol4(other, fh=other_file)
+        # nester.print_lol4(man) тест
+        # nester.print_lol4(other) тест
+        nester.print_lol5(man, fh=man_file)
+        nester.print_lol5(other, fh=other_file)
 except IOError as err:
     print('File error: ' + str(err))
 
 # Внутри script.py работает, а c импортом из nester - нет... ХУЙ ЗНАЕТ ПОЧЕМУ
+print('after')
