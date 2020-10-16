@@ -483,3 +483,55 @@ print(james)
 print(julie)
 print(mikey)
 print(sarah)
+
+# ____________
+# Сортировки
+# .sort() сортирует существующий список
+data = [6,3,1,2,4,5]
+print(data)
+data.sort()  # тут
+print('data with .sort(): ', data)
+
+# sorted() сортирует копию списка
+data = [6,3,1,2,4,5]
+print(data)
+data2 = sorted(data)  # тут
+print('sorted() data: ', data2)
+print(data)
+# ____________
+
+
+print(sorted(james))
+print(sorted(julie))
+print(sorted(mikey))
+print(sorted(sarah))
+
+
+def sanitize(time_string):
+    if '-' in time_string:
+        splitter = '-'
+    elif ':' in time_string:
+        splitter = ':'
+    else:
+        return(time_string)
+    (mins, secs) = time_string.split(splitter)
+    return (mins + '.' + secs)
+
+clean_james = []
+clean_julie = []
+clean_mikey = []
+clean_sarah = []
+
+for each_time in james:
+    clean_james.append(sanitize(each_time))
+for each_time in julie:
+    clean_julie.append(sanitize(each_time))
+for each_time in mikey:
+    clean_mikey.append(sanitize(each_time))
+for each_time in sarah:
+    clean_sarah.append(sanitize(each_time))
+print ('sorted time:')
+print(sorted(clean_james, reverse=False))  # reverse=True - порядок убывания, False - возрастание (по умолчанию)
+print(sorted(clean_julie))
+print(sorted(clean_mikey))
+print(sorted(clean_sarah))
