@@ -425,7 +425,7 @@ from nester import nester
 # from new_nester import my_nester
 
 
-print('before')
+
 # from .nester import nester
 
 try:
@@ -438,5 +438,26 @@ try:
 except IOError as err:
     print('File error: ' + str(err))
 
-# Внутри script.py работает, а c импортом из nester - нет... ХУЙ ЗНАЕТ ПОЧЕМУ
-print('after')
+
+# Моудль pickle (хранение и вывод данных)
+
+# pickle.dump() - записываеи объект в файл (поток байтов)
+# pickle.load() - загружает объект (поток байтов) из файла
+
+import pickle
+
+with open('mydata.pickle', 'wb') as mysavedata:  # внимание на wb write bite
+    pickle.dump([1, 2, 'three'], mysavedata)
+with open('mydata.pickle', 'rb') as myrestoredata:
+    a_list = pickle.load(myrestoredata)
+print(a_list)
+
+try:
+    with open('man_data.txt', 'wb') as man_file, open('other_data.txt', 'wb') as other_file:
+        pickle.dump(man, man_file)
+        pickle.dump(other, other_file)
+except IOError as err:
+    print('File error: ' + str(err))
+except pickle.PickleError as perr:
+    print('Pickling error: ' + str(perr))
+
