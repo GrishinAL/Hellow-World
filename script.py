@@ -446,14 +446,14 @@ except IOError as err:
 
 import pickle
 
-with open('mydata.pickle', 'wb') as mysavedata:  # внимание на wb write bite
+with open('nester/HeadFirstPython/chapter3/mydata.pickle', 'wb') as mysavedata:  # внимание на wb write bite
     pickle.dump([1, 2, 'three'], mysavedata)
-with open('mydata.pickle', 'rb') as myrestoredata:
+with open('nester/HeadFirstPython/chapter3/mydata.pickle', 'rb') as myrestoredata:
     a_list = pickle.load(myrestoredata)
 print(a_list)
 
 try:
-    with open('man_data.txt', 'wb') as man_file, open('other_data.txt', 'wb') as other_file:
+    with open('nester/HeadFirstPython/chapter3/man_data.txt', 'wb') as man_file, open('nester/HeadFirstPython/chapter3/other_data.txt', 'wb') as other_file:
         pickle.dump(man, man_file)
         pickle.dump(other, other_file)
 except IOError as err:
@@ -461,3 +461,25 @@ except IOError as err:
 except pickle.PickleError as perr:
     print('Pickling error: ' + str(perr))
 
+# с огурчиком разобрался
+
+# тут крч загрузил hfpy_ch5_data. в нем 4 txt файлика: james, julie, mikey, sarah
+
+
+with open('nester/HeadFirstPython/hfpy_ch5_data/james.txt') as james_file:
+    data = james_file.readline()  # считываем 1 строку
+james = data.strip().split(',')  # убираем лишние пробелы и заделяем на отдельные элементы запятой и создавая список с соответствующими элементами
+with open('nester/HeadFirstPython/hfpy_ch5_data/julie.txt') as julie_file:
+    data = julie_file.readline()
+julie = data.strip().split(',')
+with open('nester/HeadFirstPython/hfpy_ch5_data/mikey.txt') as mikey_file:
+    data = mikey_file.readline()
+mikey = data.strip().split(',')
+with open('nester/HeadFirstPython/hfpy_ch5_data/sarah.txt') as sarah_file:
+    data = sarah_file.readline()
+sarah = data.strip().split(',')
+
+print(james)
+print(julie)
+print(mikey)
+print(sarah)
