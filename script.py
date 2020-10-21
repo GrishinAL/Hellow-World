@@ -484,6 +484,7 @@ print(julie)
 print(mikey)
 print(sarah)
 
+
 # ____________
 # Сортировки
 # .sort() сортирует существующий список
@@ -523,7 +524,7 @@ clean_mikey = []
 clean_sarah = []
 
 for each_time in james:
-    clean_james.append(sanitize(each_time))
+    clean_james.append(sanitize(each_time))  # sanitize - созданная функция, заменяет ":" и "-" на "."
 for each_time in julie:
     clean_julie.append(sanitize(each_time))
 for each_time in mikey:
@@ -535,3 +536,102 @@ print(sorted(clean_james, reverse=False))  # reverse=True - порядок уб�
 print(sorted(clean_julie))
 print(sorted(clean_mikey))
 print(sorted(clean_sarah))
+
+# Сейчас схема: 4 файла -> 4 списка для хранения данных -> 4 списка очищенных данных
+# Есть инструмент list comprehension (понимающий список)
+# Он нужен для уменьшения объема кода преобразования списков
+
+# Открываем файлик
+with open('nester/HeadFirstPython/hfpy_ch5_data/mikey.txt') as mikey_file:
+    data = mikey_file.readline()
+mikey = data.strip().split(',')
+
+# Длинный вариант
+clean_mikey = []
+for each_time in mikey:
+    clean_mikey.append(sanitize(each_time))  # sanitize - созданная функция, заменяет ":" и "-" на "."
+print ('old clean_mikey: ', clean_mikey)
+# Короткий вариант:
+clean_mikey = [sanitize(each_time) for each_time in mikey]
+print ('new clean_mikey: ', clean_mikey)
+
+# ________________________________________________________
+# Чуток практики для list comprehension
+# Перевод минуты в сенкуды
+mins = [1, 2, 3]
+secs = [m*60 for m in mins]
+print('seconds: ', secs)
+
+# Перевод метры в футы
+meters = [1, 10, 3]
+feet = [m*3.281 for m in meters]
+print('feets: ', feet)
+
+# Преобразование к верхнему регистру
+lower = ["I", "don't", "like", "spam"]
+upper = [s.upper() for s in lower]  # метод .upper() преобразовывает к верхнему регистру
+print ('upper: ', upper)
+
+# Преобразуем "-" и ":" к "."
+dirty = ['2-22', '2:22', '2.22']
+clean = [sanitize(t) for t in dirty]
+print ('text "clean": ', clean)
+
+# Можно присвоить результаты преобразования списка исходному целевому идентификатору
+clean = [float(s) for s in clean]
+print ('float() "clean": ', clean)
+
+# Преобразование может быть цепочкой функций
+clean = [float(sanitize(t)) for t in ['2-22', '3:33', '4.44']]
+print ('"clean" like a function chain: ', clean)
+# ________________________________________________________
+
+# Красивый вариант того, что делалось выше:
+print(sorted([sanitize(t)for t in james]))
+print(sorted([sanitize(t)for t in julie]))
+print(sorted([sanitize(t)for t in mikey]))
+print(sorted([sanitize(t)for t in sarah]))
+
+# Первые 3 элемента (без фильтрации дублей):
+print(sorted([sanitize(t)for t in james])[0:3])
+print(sorted([sanitize(t)for t in julie])[0:3])
+print(sorted([sanitize(t)for t in mikey])[0:3])
+print(sorted([sanitize(t)for t in sarah])[0:3])
+
+# Фильтрация дублей
+
+unique_james = []
+james = sorted([sanitize(t)for t in james])
+for each_item in james:
+    if each_item not in unique_james:  # not in проверяет вхождение элемента в список
+        unique_james.append(each_item)
+
+print(unique_james)
+print(unique_james[0:3])  # первая тройка уникальных знаений
+
+unique_julie = []
+julie = sorted([sanitize(t)for t in julie])
+for each_item in julie:
+    if each_item not in unique_julie:  # not in проверяет вхождение элемента в список
+        unique_julie.append(each_item)
+
+print(unique_julie)
+print(unique_julie[0:3])  # первая тройка уникальных знаений
+
+unique_mikey = []
+mikey = sorted([sanitize(t)for t in mikey])
+for each_item in mikey:
+    if each_item not in unique_mikey:  # not in проверяет вхождение элемента в список
+        unique_mikey.append(each_item)
+
+print(unique_mikey)
+print(unique_mikey[0:3])  # первая тройка уникальных знаений
+
+unique_sarah = []
+sarah = sorted([sanitize(t)for t in sarah])
+for each_item in sarah:
+    if each_item not in unique_sarah:  # not in проверяет вхождение элемента в список
+        unique_sarah.append(each_item)
+
+print(unique_sarah)
+print(unique_sarah[0:3])  # первая тройка уникальных знаений
