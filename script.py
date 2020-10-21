@@ -629,9 +629,92 @@ print(unique_mikey[0:3])  # первая тройка уникальных зн�
 
 unique_sarah = []
 sarah = sorted([sanitize(t)for t in sarah])
+print('почистил от ":", "-" и отсортировал sarah: ', sarah)
 for each_item in sarah:
     if each_item not in unique_sarah:  # not in проверяет вхождение элемента в список
         unique_sarah.append(each_item)
 
-print(unique_sarah)
-print(unique_sarah[0:3])  # первая тройка уникальных знаений
+print('Убрал дубли sarah: ', unique_sarah)
+print('Показал топ3 sarah: ', unique_sarah[0:3])  # первая тройка уникальных знаений
+
+
+# SET'ы (в сетах ВСЕ ДУБЛИ игнорируются)
+
+distances = set()  # создали пустой сет
+distances = {10.6, 11, 8, 10.6, "two", 7}  # создали сет с данными
+print (distances)  # нет дублей "10.6"
+
+distances = set(sarah)
+print (distances)
+
+# Первые 3 элемента (c фильтрации дублей):
+print(sorted(set([sanitize(t)for t in james]))[0:3])
+print(sorted(set([sanitize(t)for t in julie]))[0:3])
+print(sorted(set([sanitize(t)for t in mikey]))[0:3])
+print(sorted(set([sanitize(t)for t in sarah]))[0:3])
+
+# Перед код ревью пропишу все еще раз
+
+print('код перед ревью')
+
+def sanitize(time_string):
+    if '-' in time_string:
+        splitter = '-'
+    elif ':' in time_string:
+        splitter = ':'
+    else:
+        return(time_string)
+    (mins, secs) = time_string.split(splitter)
+    return (mins + '.' + secs)
+
+with open('nester/HeadFirstPython/hfpy_ch5_data/james.txt') as james_file:
+    data = james_file.readline()  # считываем 1 строку
+james = data.strip().split(',')  # убираем лишние пробелы и разделяем на отдельные элементы запятой и создавая список с соответствующими элементами
+with open('nester/HeadFirstPython/hfpy_ch5_data/julie.txt') as julie_file:
+    data = julie_file.readline()
+julie = data.strip().split(',')
+with open('nester/HeadFirstPython/hfpy_ch5_data/mikey.txt') as mikey_file:
+    data = mikey_file.readline()
+mikey = data.strip().split(',')
+with open('nester/HeadFirstPython/hfpy_ch5_data/sarah.txt') as sarah_file:
+    data = sarah_file.readline()
+sarah = data.strip().split(',')
+
+print(sorted(set([sanitize(t)for t in james]))[0:3])
+print(sorted(set([sanitize(t)for t in julie]))[0:3])
+print(sorted(set([sanitize(t)for t in mikey]))[0:3])
+print(sorted(set([sanitize(t)for t in sarah]))[0:3])
+
+# 1) Что будет происходить, если нет файла?
+# 2) Много дублирования с отрытием файла, можно написать функцию, с помощью которой всё это будет делаться
+
+print('код после внесения изменений, описанных в ревью')
+
+def sanitize(time_string):
+    if '-' in time_string:
+        splitter = '-'
+    elif ':' in time_string:
+        splitter = ':'
+    else:
+        return(time_string)
+    (mins, secs) = time_string.split(splitter)
+    return (mins + '.' + secs)
+
+def get_coach_data(filename):  # Создали функцию с аргументом filename
+    try:  # обработали исключения try/with/except
+        with open(filename) as file:  # открыли файл и прочитали данные
+            data = file.readline()
+        return data.strip().split(',')  # убираем лишние пробелы и разделяем на отдельные элементы запятой и создавая список с соответствующими элементами и возвращаем в код
+    except IOError as error:
+        print('File error' + str(error))  # указываем пользователю на ошибку
+        return None  # возвращаем None чтобы указать на сбой
+
+james = get_coach_data('nester/HeadFirstPython/hfpy_ch5_data/sarah.txt')  # вызываем функцию и указываем путь к файлу
+julie = get_coach_data('nester/HeadFirstPython/hfpy_ch5_data/julie.txt')
+mikey = get_coach_data('nester/HeadFirstPython/hfpy_ch5_data/mikey.txt')
+sarah = get_coach_data('nester/HeadFirstPython/hfpy_ch5_data/sarah.txt')
+
+print(sorted(set([sanitize(t)for t in james]))[0:3])
+print(sorted(set([sanitize(t)for t in julie]))[0:3])
+print(sorted(set([sanitize(t)for t in mikey]))[0:3])
+print(sorted(set([sanitize(t)for t in sarah]))[0:3])
