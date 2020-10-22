@@ -6,4 +6,4 @@ Also GitHub is a very important part of my study.
 And ofc I'm learning English here =) 
 
 
-Progress: Current page 189 of 445 (226 of 494)
+Progress: Current page 189(193) of 445 (226(229) of 494)
