@@ -743,8 +743,8 @@ print(sarah_name + "'s fastest times are: " + str(sorted(set([sanitize(t) for t 
 # СЛОВАРИ
 cleese = {}  # способ 1: создание словаря
 palin = dict()  # способ 2: создание словаря
-type(cleese)  # <class 'dict> / создаем класс
-type(palin)  # <class 'dict> / создаем класс
+# type(cleese)  # <class 'dict> / создаем класс
+# type(palin)  # <class 'dict> / создаем класс
 
 cleese['Name'] = 'John Cleese'  # Добавляем данные в словарь, связывая значения с ключами (ключ - Name)
 cleese['Occupations'] = ['actor', 'comedian', 'writer',
@@ -827,4 +827,30 @@ print(julie['Name'] + "'s fastest times are: " + james['Times'])
 print(mikey['Name'] + "'s fastest times are: " + james['Times'])
 print(sarah['Name'] + "'s fastest times are: " + james['Times'])
 
+
+
 # КЛАССЫ
+"""
+class Athlete:  # Создаем класс с названием Athlete
+    def __init__(self):
+        # The code to initialize a "Athlete" object.
+"""
+
+"""
+a = Athlete()
+b = Athlete()
+c = Athlete()
+d = Athlete()
+"""
+
+# Все эти переменные уникальны и относятся к «типу» спортсмена.
+# Скобки указывают Python создать новый объект «Athlete», который затем присваивается переменной.
+"""
+Athlete().__init__(a)
+"""
+
+class Athlete:
+    def __init__(self, value=0):
+        self.thing = value
+    def how_big(self):
+        return(len(self.thing))
