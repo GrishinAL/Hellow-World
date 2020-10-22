@@ -421,9 +421,9 @@ def print_lol(the_list, indent=False, level=0, fh=sys.stdout):  # Четверт
 """
 import sys
 from nester import nester
+
 # import nester
 # from new_nester import my_nester
-
 
 
 # from .nester import nester
@@ -437,7 +437,6 @@ try:
         nester.print_lol5(other, fh=other_file)
 except IOError as err:
     print('File error: ' + str(err))
-
 
 # Моудль pickle (хранение и вывод данных)
 
@@ -453,7 +452,8 @@ with open('nester/HeadFirstPython/chapter3/mydata.pickle', 'rb') as myrestoredat
 print(a_list)
 
 try:
-    with open('nester/HeadFirstPython/chapter3/man_data.txt', 'wb') as man_file, open('nester/HeadFirstPython/chapter3/other_data.txt', 'wb') as other_file:
+    with open('nester/HeadFirstPython/chapter3/man_data.txt', 'wb') as man_file, open(
+            'nester/HeadFirstPython/chapter3/other_data.txt', 'wb') as other_file:
         pickle.dump(man, man_file)
         pickle.dump(other, other_file)
 except IOError as err:
@@ -468,7 +468,8 @@ except pickle.PickleError as perr:
 
 with open('nester/HeadFirstPython/hfpy_ch5_data/james.txt') as james_file:
     data = james_file.readline()  # считываем 1 строку
-james = data.strip().split(',')  # убираем лишние пробелы и заделяем на отдельные элементы запятой и создавая список с соответствующими элементами
+james = data.strip().split(
+    ',')  # убираем лишние пробелы и заделяем на отдельные элементы запятой и создавая список с соответствующими элементами
 with open('nester/HeadFirstPython/hfpy_ch5_data/julie.txt') as julie_file:
     data = julie_file.readline()
 julie = data.strip().split(',')
@@ -484,17 +485,16 @@ print(julie)
 print(mikey)
 print(sarah)
 
-
 # ____________
 # Сортировки
 # .sort() сортирует существующий список
-data = [6,3,1,2,4,5]
+data = [6, 3, 1, 2, 4, 5]
 print(data)
 data.sort()  # тут
 print('data with .sort(): ', data)
 
 # sorted() сортирует копию списка
-data = [6,3,1,2,4,5]
+data = [6, 3, 1, 2, 4, 5]
 print(data)
 data2 = sorted(data)  # тут
 print('sorted() data: ', data2)
@@ -514,9 +514,10 @@ def sanitize(time_string):
     elif ':' in time_string:
         splitter = ':'
     else:
-        return(time_string)
+        return (time_string)
     (mins, secs) = time_string.split(splitter)
     return (mins + '.' + secs)
+
 
 clean_james = []
 clean_julie = []
@@ -531,7 +532,7 @@ for each_time in mikey:
     clean_mikey.append(sanitize(each_time))
 for each_time in sarah:
     clean_sarah.append(sanitize(each_time))
-print ('sorted time:')
+print('sorted time:')
 print(sorted(clean_james, reverse=False))  # reverse=True - порядок убывания, False - возрастание (по умолчанию)
 print(sorted(clean_julie))
 print(sorted(clean_mikey))
@@ -550,58 +551,58 @@ mikey = data.strip().split(',')
 clean_mikey = []
 for each_time in mikey:
     clean_mikey.append(sanitize(each_time))  # sanitize - созданная функция, заменяет ":" и "-" на "."
-print ('old clean_mikey: ', clean_mikey)
+print('old clean_mikey: ', clean_mikey)
 # Короткий вариант:
 clean_mikey = [sanitize(each_time) for each_time in mikey]
-print ('new clean_mikey: ', clean_mikey)
+print('new clean_mikey: ', clean_mikey)
 
 # ________________________________________________________
 # Чуток практики для list comprehension
 # Перевод минуты в сенкуды
 mins = [1, 2, 3]
-secs = [m*60 for m in mins]
+secs = [m * 60 for m in mins]
 print('seconds: ', secs)
 
 # Перевод метры в футы
 meters = [1, 10, 3]
-feet = [m*3.281 for m in meters]
+feet = [m * 3.281 for m in meters]
 print('feets: ', feet)
 
 # Преобразование к верхнему регистру
 lower = ["I", "don't", "like", "spam"]
 upper = [s.upper() for s in lower]  # метод .upper() преобразовывает к верхнему регистру
-print ('upper: ', upper)
+print('upper: ', upper)
 
 # Преобразуем "-" и ":" к "."
 dirty = ['2-22', '2:22', '2.22']
 clean = [sanitize(t) for t in dirty]
-print ('text "clean": ', clean)
+print('text "clean": ', clean)
 
 # Можно присвоить результаты преобразования списка исходному целевому идентификатору
 clean = [float(s) for s in clean]
-print ('float() "clean": ', clean)
+print('float() "clean": ', clean)
 
 # Преобразование может быть цепочкой функций
 clean = [float(sanitize(t)) for t in ['2-22', '3:33', '4.44']]
-print ('"clean" like a function chain: ', clean)
+print('"clean" like a function chain: ', clean)
 # ________________________________________________________
 
 # Красивый вариант того, что делалось выше:
-print(sorted([sanitize(t)for t in james]))
-print(sorted([sanitize(t)for t in julie]))
-print(sorted([sanitize(t)for t in mikey]))
-print(sorted([sanitize(t)for t in sarah]))
+print(sorted([sanitize(t) for t in james]))
+print(sorted([sanitize(t) for t in julie]))
+print(sorted([sanitize(t) for t in mikey]))
+print(sorted([sanitize(t) for t in sarah]))
 
 # Первые 3 элемента (без фильтрации дублей):
-print(sorted([sanitize(t)for t in james])[0:3])
-print(sorted([sanitize(t)for t in julie])[0:3])
-print(sorted([sanitize(t)for t in mikey])[0:3])
-print(sorted([sanitize(t)for t in sarah])[0:3])
+print(sorted([sanitize(t) for t in james])[0:3])
+print(sorted([sanitize(t) for t in julie])[0:3])
+print(sorted([sanitize(t) for t in mikey])[0:3])
+print(sorted([sanitize(t) for t in sarah])[0:3])
 
 # Фильтрация дублей
 
 unique_james = []
-james = sorted([sanitize(t)for t in james])
+james = sorted([sanitize(t) for t in james])
 for each_item in james:
     if each_item not in unique_james:  # not in проверяет вхождение элемента в список
         unique_james.append(each_item)
@@ -610,7 +611,7 @@ print(unique_james)
 print(unique_james[0:3])  # первая тройка уникальных знаений
 
 unique_julie = []
-julie = sorted([sanitize(t)for t in julie])
+julie = sorted([sanitize(t) for t in julie])
 for each_item in julie:
     if each_item not in unique_julie:  # not in проверяет вхождение элемента в список
         unique_julie.append(each_item)
@@ -619,7 +620,7 @@ print(unique_julie)
 print(unique_julie[0:3])  # первая тройка уникальных знаений
 
 unique_mikey = []
-mikey = sorted([sanitize(t)for t in mikey])
+mikey = sorted([sanitize(t) for t in mikey])
 for each_item in mikey:
     if each_item not in unique_mikey:  # not in проверяет вхождение элемента в список
         unique_mikey.append(each_item)
@@ -628,7 +629,7 @@ print(unique_mikey)
 print(unique_mikey[0:3])  # первая тройка уникальных знаений
 
 unique_sarah = []
-sarah = sorted([sanitize(t)for t in sarah])
+sarah = sorted([sanitize(t) for t in sarah])
 print('почистил от ":", "-" и отсортировал sarah: ', sarah)
 for each_item in sarah:
     if each_item not in unique_sarah:  # not in проверяет вхождение элемента в список
@@ -637,25 +638,25 @@ for each_item in sarah:
 print('Убрал дубли sarah: ', unique_sarah)
 print('Показал топ3 sarah: ', unique_sarah[0:3])  # первая тройка уникальных знаений
 
-
 # SET'ы (в сетах ВСЕ ДУБЛИ игнорируются)
 
 distances = set()  # создали пустой сет
 distances = {10.6, 11, 8, 10.6, "two", 7}  # создали сет с данными
-print (distances)  # нет дублей "10.6"
+print(distances)  # нет дублей "10.6"
 
 distances = set(sarah)
-print (distances)
+print(distances)
 
 # Первые 3 элемента (c фильтрации дублей):
-print(sorted(set([sanitize(t)for t in james]))[0:3])
-print(sorted(set([sanitize(t)for t in julie]))[0:3])
-print(sorted(set([sanitize(t)for t in mikey]))[0:3])
-print(sorted(set([sanitize(t)for t in sarah]))[0:3])
+print(sorted(set([sanitize(t) for t in james]))[0:3])
+print(sorted(set([sanitize(t) for t in julie]))[0:3])
+print(sorted(set([sanitize(t) for t in mikey]))[0:3])
+print(sorted(set([sanitize(t) for t in sarah]))[0:3])
 
 # Перед код ревью пропишу все еще раз
 
 print('код перед ревью')
+
 
 def sanitize(time_string):
     if '-' in time_string:
@@ -663,13 +664,15 @@ def sanitize(time_string):
     elif ':' in time_string:
         splitter = ':'
     else:
-        return(time_string)
+        return (time_string)
     (mins, secs) = time_string.split(splitter)
     return (mins + '.' + secs)
 
+
 with open('nester/HeadFirstPython/hfpy_ch5_data/james.txt') as james_file:
     data = james_file.readline()  # считываем 1 строку
-james = data.strip().split(',')  # убираем лишние пробелы и разделяем на отдельные элементы запятой и создавая список с соответствующими элементами
+james = data.strip().split(
+    ',')  # убираем лишние пробелы и разделяем на отдельные элементы запятой и создавая список с соответствующими элементами
 with open('nester/HeadFirstPython/hfpy_ch5_data/julie.txt') as julie_file:
     data = julie_file.readline()
 julie = data.strip().split(',')
@@ -680,15 +683,16 @@ with open('nester/HeadFirstPython/hfpy_ch5_data/sarah.txt') as sarah_file:
     data = sarah_file.readline()
 sarah = data.strip().split(',')
 
-print(sorted(set([sanitize(t)for t in james]))[0:3])
-print(sorted(set([sanitize(t)for t in julie]))[0:3])
-print(sorted(set([sanitize(t)for t in mikey]))[0:3])
-print(sorted(set([sanitize(t)for t in sarah]))[0:3])
+print(sorted(set([sanitize(t) for t in james]))[0:3])
+print(sorted(set([sanitize(t) for t in julie]))[0:3])
+print(sorted(set([sanitize(t) for t in mikey]))[0:3])
+print(sorted(set([sanitize(t) for t in sarah]))[0:3])
 
 # 1) Что будет происходить, если нет файла?
 # 2) Много дублирования с отрытием файла, можно написать функцию, с помощью которой всё это будет делаться
 
 print('код после внесения изменений, описанных в ревью')
+
 
 def sanitize(time_string):
     if '-' in time_string:
@@ -696,25 +700,131 @@ def sanitize(time_string):
     elif ':' in time_string:
         splitter = ':'
     else:
-        return(time_string)
+        return (time_string)
     (mins, secs) = time_string.split(splitter)
     return (mins + '.' + secs)
+
 
 def get_coach_data(filename):  # Создали функцию с аргументом filename
     try:  # обработали исключения try/with/except
         with open(filename) as file:  # открыли файл и прочитали данные
             data = file.readline()
-        return data.strip().split(',')  # убираем лишние пробелы и разделяем на отдельные элементы запятой и создавая список с соответствующими элементами и возвращаем в код
+        return data.strip().split(
+            ',')  # убираем лишние пробелы и разделяем на отдельные элементы запятой и создавая список с соответствующими элементами и возвращаем в код
     except IOError as error:
         print('File error' + str(error))  # указываем пользователю на ошибку
         return None  # возвращаем None чтобы указать на сбой
 
-james = get_coach_data('nester/HeadFirstPython/hfpy_ch5_data/sarah.txt')  # вызываем функцию и указываем путь к файлу
+
+james = get_coach_data('nester/HeadFirstPython/hfpy_ch5_data/james.txt')  # вызываем функцию и указываем путь к файлу
 julie = get_coach_data('nester/HeadFirstPython/hfpy_ch5_data/julie.txt')
 mikey = get_coach_data('nester/HeadFirstPython/hfpy_ch5_data/mikey.txt')
 sarah = get_coach_data('nester/HeadFirstPython/hfpy_ch5_data/sarah.txt')
 
-print(sorted(set([sanitize(t)for t in james]))[0:3])
-print(sorted(set([sanitize(t)for t in julie]))[0:3])
-print(sorted(set([sanitize(t)for t in mikey]))[0:3])
-print(sorted(set([sanitize(t)for t in sarah]))[0:3])
+print(sorted(set([sanitize(t) for t in james]))[0:3])
+print(sorted(set([sanitize(t) for t in julie]))[0:3])
+print(sorted(set([sanitize(t) for t in mikey]))[0:3])
+print(sorted(set([sanitize(t) for t in sarah]))[0:3])
+
+# Глава 6
+# Изменилась структура файлов
+# Sarah Sweeney,2002-6-17,2:58,2.58,2:39,2-25,2-55,2:54,2.18,2:55,2:55,2:22,2-21,2.22
+
+sarah = get_coach_data('nester/HeadFirstPython/hfpy_ch6_data/sarah2.txt')
+print(sarah)
+(sarah_name, sarah_dob) = sarah.pop(0), sarah.pop(
+    0)  # из sarah мы удаляем имя и дату рождения, присваивая соответствующие значения sarah_name и sarah_dob
+print(sarah_name)
+print(sarah_dob)
+print(sarah_name + "'s fastest times are: " + str(sorted(set([sanitize(t) for t in sarah]))[0:3]))
+# Cлишком много переменных...
+
+
+# СЛОВАРИ
+cleese = {}  # способ 1: создание словаря
+palin = dict()  # способ 2: создание словаря
+type(cleese)  # <class 'dict> / создаем класс
+type(palin)  # <class 'dict> / создаем класс
+
+cleese['Name'] = 'John Cleese'  # Добавляем данные в словарь, связывая значения с ключами (ключ - Name)
+cleese['Occupations'] = ['actor', 'comedian', 'writer',
+                         'film producer']  # # Добавляем данные в словарь, связывая значения с ключами (ключ - Occupations)
+palin = {'Name': 'Michael Palin',
+         'Occupations': ['comedian', 'actor', 'writer', 'tv']}  # Создается словарь и добавляются данные одновременно
+
+print()
+print(palin['Name'])
+print(palin['Occupations'])
+print(cleese['Name'])
+print(cleese['Occupations'][-1])
+
+# Словарь может динамически увеличиваться
+palin['Birthplace'] = "Broomhill, Sheffield, England"
+cleese['Birthplace'] = "Weston-super-Mare, North Somerset, England"
+
+# Словарь поддерживает ассоциации, а не порядок. Новые данные с новыми ключами могут вставиться куда-угодно
+print(palin)  # сейчас повезло, вставилось в конец
+print(cleese)
+
+# Продолжим... избавляемся от переменных с помощью словарей
+# Было:
+sarah = get_coach_data('nester/HeadFirstPython/hfpy_ch6_data/sarah2.txt')
+
+(sarah_name, sarah_dob) = sarah.pop(0), sarah.pop(
+    0)  # из sarah мы удаляем имя и дату рождения, присваивая соответствующие значения sarah_name и sarah_dob
+
+print(sarah_name + "'s fastest times are: " + str(sorted(set([sanitize(t) for t in sarah]))[0:3]))
+# Стало:
+sarah = get_coach_data('nester/HeadFirstPython/hfpy_ch6_data/sarah2.txt')
+sarah_data = {}  # Создали пустой словарь
+
+sarah_data['Name'] = sarah.pop(0)
+sarah_data['DOB'] = sarah.pop(0)
+sarah_data['Times'] = sarah
+
+print(sarah_data['Name'] + "'s fastest times are: " + str(sorted(set([sanitize(t) for t in sarah]))[0:3]))
+
+
+# Опять много кода, можно сделать лучше
+
+# Создавать словарь за 1 раз
+# Переместить код создания словаря в функцию get_coach_data()
+# Переместить код определения трех лучших результатов в функцию get_coach_data()
+print()
+
+def sanitize(time_string):  # Эту функцию не трогаем, тут всё хорошо
+    if '-' in time_string:
+        splitter = '-'
+    elif ':' in time_string:
+        splitter = ':'
+    else:
+        return (time_string)
+    (mins, secs) = time_string.split(splitter)
+    return (mins + '.' + secs)
+
+
+def get_coach_data(filename):  # Создали функцию с аргументом filename
+    try:  # обработали исключения try/with/except
+        with open(filename) as file:  # открыли файл и прочитали данные
+            data = file.readline()
+        templ = data.strip().split(',')  # создали временный список для хранения данных ДО создания словаря за один раз
+        return ({'Name': templ.pop(0),
+                 'DOB': templ.pop(0),
+                 'Times': str(sorted(set([sanitize(t) for t in templ]))[
+                              0:3])})
+    except IOError as error:
+        print('File error' + str(error))  # указываем пользователю на ошибку
+        return None  # возвращаем None чтобы указать на сбой
+
+
+james = get_coach_data('nester/HeadFirstPython/hfpy_ch6_data/james2.txt')  # вызываем функцию и указываем путь к файлу
+julie = get_coach_data('nester/HeadFirstPython/hfpy_ch6_data/julie2.txt')
+mikey = get_coach_data('nester/HeadFirstPython/hfpy_ch6_data/mikey2.txt')
+sarah = get_coach_data('nester/HeadFirstPython/hfpy_ch6_data/sarah2.txt')
+
+print(james['Name'] + "'s fastest times are: " + james['Times'])
+print(julie['Name'] + "'s fastest times are: " + james['Times'])
+print(mikey['Name'] + "'s fastest times are: " + james['Times'])
+print(sarah['Name'] + "'s fastest times are: " + james['Times'])
+
+# КЛАССЫ
